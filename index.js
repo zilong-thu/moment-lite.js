@@ -1,9 +1,11 @@
 /**
+ * moment-lite.js
  * 一个使用方式很像 moment.js 的库
  * 但是只提供了函数式风格的 API
+ * TODO： 参考 https://date-fns.org/ 来设计一些用到的 API
  */
 
-function Moment(time = +new Date) {
+function Moment(time = +new Date()) {
   if (!(this instanceof Moment)) {
     return new Moment(time);
   }
@@ -68,10 +70,16 @@ Moment.prototype.add = function(num, unit) {
     const unitMap = {
       ms: 1,
       seconds: 1000,
+      second: 1000,
+      s: 1000,
       minutes: 60 * 1000,
+      minute: 60 * 1000,
       hours: 3600 * 1000,
+      hour: 3600 * 1000,
       days: 24 * 3600 * 1000,
+      day: 24 * 3600 * 1000,
       weeks: 7 * 24 * 3600 * 1000,
+      week: 7 * 24 * 3600 * 1000,
     };
     let increase = num * unitMap[unit];
     res = Moment(new Date(this._value.valueOf() + increase));
@@ -85,6 +93,14 @@ Moment.prototype.endOf = function(unit) {
    */
   const endOfDay = this.format('YYYY/MM/DD') + ' 23:59:59';
   return Moment(endOfDay);
+};
+
+Moment.prototype.startOf = function(unit) {
+  /**
+   * iOS: YYYY/MM/DD HH:mm:ss 才能与安卓一致
+   */
+  const startOfDay = this.format('YYYY/MM/DD') + ' 00:00:00';
+  return Moment(startOfDay);
 };
 
 module.exports = Moment;
