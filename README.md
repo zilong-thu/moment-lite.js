@@ -10,6 +10,11 @@
 + 无副作用
 + 轻量级
 
+## Info
+
++ [npm](https://www.npmjs.com/package/moment-lite)
++ [repository](https://github.com/zilong-thu/moment-lite.js)
+
 ## Usage
 
 ```javascript
@@ -20,3 +25,20 @@ console.log(now.format('YYYY-MM-DD HH:mm:ss'));
 ```
 
 ## APIs
+
+```javascript
+const now = moment();
+
+/**
+ * moment.prototype.format
+ * 格式化日期
+ */
+const str = now.format('YYYY-MM-DD');
+
+/**
+ * moment.prototype.add(num, unit)
+ * 增加日期
+ */
+const oneMonthLater = now.add(30, 'days');
+```
+
