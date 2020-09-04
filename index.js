@@ -35,8 +35,8 @@ Moment.prototype.format = function(str = 'YYYY-MM-DD HH:mm:ss') {
   const seconds = this._value.getSeconds();
 
   let res = str;
-  if (/YYYY/.test(str)) {
-    res = res.replace('YYYY', year);
+  if (/YYYY/i.test(str)) {
+    res = res.replace(/YYYY/i, year);
   }
   if (/MM/.test(str)) {
     res = res.replace('MM', leftPadZero(months));
